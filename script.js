@@ -1,6 +1,9 @@
-const todoArray = [];
+let todoArray = JSON.parse(localStorage.getItem("todos")) || [];
 const input = document.getElementById("todo");
 const display = document.getElementById("unord-li");
+
+// Load and render tasks on page load
+window.onload = renderTodos;
 
 function saveTodo() {
   const newTodo = input.value.trim();
@@ -8,12 +11,18 @@ function saveTodo() {
 
   todoArray.push(newTodo);
   input.value = "";
+  updateLocalStorage();
   renderTodos();
 }
 
 function deleteTodo(index) {
-  todoArray.splice(index, 1); // remove one item at index
+  todoArray.splice(index, 1);
+  updateLocalStorage();
   renderTodos();
+}
+
+function updateLocalStorage() {
+  localStorage.setItem("todos", JSON.stringify(todoArray));
 }
 
 function renderTodos() {
