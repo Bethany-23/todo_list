@@ -76,3 +76,12 @@ ul {
 .delete-btn:hover {
   transform: scale(1.2);
 }
+
+.done {
+  text-decoration: line-through;
+  color: #a3a3a3;
+  opacity: 0.7;
+}
+.todo-item {
+  cursor: pointer;
+}
