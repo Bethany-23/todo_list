@@ -65,3 +65,14 @@ ul {
   font-weight: 500;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
+.delete-btn {
+  margin-left: 15px;
+  color: #ef4444; /* red */
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: transform 0.2s ease;
+}
+
+.delete-btn:hover {
+  transform: scale(1.2);
+}
