@@ -1,16 +1,18 @@
-
 const todoArray = [];
 const input = document.getElementById("todo");
 const display = document.getElementById("unord-li");
-let listItems=" ";
 
-function saveTodo(){
+function saveTodo() {
+  const newTodo = input.value.trim();
+  if (newTodo === "") return;
 
-    todoArray.push(input.value)
+  todoArray.push(newTodo);
+  input.value = ""; 
 
-    for(let i = 0; i<todoArray.length; i ++){
-        display.innerHTML += "<li>"+ todoArray[i] +"</li>";
-    
-    }
+  let listItems = "";
+  for (let i = 0; i < todoArray.length; i++) {
+    listItems += `<li class="todo-item">${todoArray[i]}</li>`;
+  }
 
+  display.innerHTML = listItems;
 }
