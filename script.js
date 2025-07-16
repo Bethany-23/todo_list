@@ -1,3 +1,4 @@
+let currentFilter = 'all';
 let todoArray = JSON.parse(localStorage.getItem("todos")) || [];
 const input = document.getElementById("todo");
 const display = document.getElementById("unord-li");
@@ -29,11 +30,24 @@ function toggleDone(index) {
 function updateLocalStorage() {
   localStorage.setItem("todos", JSON.stringify(todoArray));
 }
+function setFilter(filter) {
+  currentFilter = filter;
+  renderTodos();
+}
 
 function renderTodos() {
   let listItems = "";
   for (let i = 0; i < todoArray.length; i++) {
     const todo = todoArray[i];
+
+    // Apply filtering
+    if (
+      currentFilter === "completed" && !todo.done ||
+      currentFilter === "active" && todo.done
+    ) {
+      continue;
+    }
+
     const doneClass = todo.done ? "done" : "";
 
     listItems += `
@@ -45,3 +59,4 @@ function renderTodos() {
   }
   display.innerHTML = listItems;
 }
+
