@@ -7,12 +7,24 @@ function saveTodo() {
   if (newTodo === "") return;
 
   todoArray.push(newTodo);
-  input.value = ""; 
+  input.value = "";
+  renderTodos();
+}
 
+function deleteTodo(index) {
+  todoArray.splice(index, 1); // remove one item at index
+  renderTodos();
+}
+
+function renderTodos() {
   let listItems = "";
   for (let i = 0; i < todoArray.length; i++) {
-    listItems += `<li class="todo-item">${todoArray[i]}</li>`;
+    listItems += `
+      <li class="todo-item">
+        ${todoArray[i]}
+        <span class="delete-btn" onclick="deleteTodo(${i})">❌</span>
+      </li>
+    `;
   }
-
   display.innerHTML = listItems;
 }
